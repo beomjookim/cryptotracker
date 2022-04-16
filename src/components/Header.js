@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {AppBar, Box, Toolbar, Typography, Select, InputLabel} from '@mui/material';
 import {MenuItem} from '@mui/material';
 import {styled} from '@mui/system';
-import { CryptoState } from '../CryptoContext';
+import {CryptoState} from '../CryptoContext';
 
 const StyledTypography = styled(Typography, {})({
   flex: 1,
