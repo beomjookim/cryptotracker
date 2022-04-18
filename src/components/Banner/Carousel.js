@@ -16,12 +16,13 @@ const StyledContainer = styled(Container, {})({
 const Carousel = () => {
     const [trending, setTrending] = useState([]);
     const {currency, symbol} = CryptoState();
-    const fetchTrendingCoins = async () => {
-        const {data} = await axios.get(TrendingCoins(currency));
-        setTrending(data);
-    }
 
-    useEffect(() => {fetchTrendingCoins()}, [currency]);
+    useEffect(() => {
+        (async () => {
+            const {data} = await axios.get(TrendingCoins(currency));
+            setTrending(data);
+        })();
+}, [currency]);
 
     const items = trending.map((coin) => {
         const percent = coin.price_change_percentage_24h;

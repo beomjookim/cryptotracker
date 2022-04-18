@@ -18,9 +18,10 @@ const StyledSelect = styled(Select, {})({
   fontFamily: 'Montserrat',
   cursor: 'pointer',
   backgroundColor: '#3c434a',
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'gold',
-  },
+  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {borderColor: 'gold'},
+  width: 100, 
+  height: 40, 
+  marginLeft: 15
 });
 
 const Header = () => {
@@ -35,10 +36,9 @@ const Header = () => {
           <StyledTypography onClick={handleClick} variant="h6" component="div">
             Crypto Tracker
           </StyledTypography>
-          <InputLabel id="demo-simple-select-label" style={{color:"gold"}}>Currency</InputLabel>
+          <InputLabel style={{color:"gold"}}>Currency</InputLabel>
           <StyledSelect
             variant="outlined"
-            style={{ width: 100, height: 40, marginLeft: 15}}
             label="Currency"
             value={currency || "USD"}
             onChange={(e) => setCurrency(e.target.value)}
