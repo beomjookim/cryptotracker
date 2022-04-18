@@ -31,7 +31,7 @@ const Banner = () => {
           Crypto Tracker
         </StyledTypography>
         <StyledTypography variant='subtitle2'>
-          The place where you can find detailed info about crypto in real time
+          The place where you can find detailed data about crypto in real time
         </StyledTypography>
       </div>
       <Carousel stlye={{height:'50%'}}></Carousel>

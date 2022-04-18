@@ -1,3 +1,4 @@
+import { Pagination } from '@material-ui/lab';
 import { Container, LinearProgress, TableContainer, Table, TableHead, TableRow, TableCell, TextField, Typography, TableBody} from '@mui/material';
 import { styled } from '@mui/system';
 import axios from 'axios';
@@ -10,6 +11,7 @@ const CoinsTable = () => {
     const navigate = useNavigate();
     const [coins, setCoins] = useState([]);
     const [search, setSearch] = useState("");
+    const [page, setPage] = useState(1);
     const {currency, symbol} = CryptoState();
     // const [loading, setLoading] = useState(false);
 
@@ -28,8 +30,16 @@ const CoinsTable = () => {
     
     const StyledTableRow = styled(TableRow, {})({
         cursor: "pointer",
-        "&:hover": {backgroundColor: "black"},
+        "&:hover": {backgroundColor: "#2E2E2E"},
         fontFamily: "Montserrat"
+    })
+
+    const StyledPagination = styled(Pagination, {})({
+        ul: {"& .MuiPaginationItem-root": {color: "gold"},
+            '& .Mui-selected': {backgroundColor: 'gold', color: 'black'}},
+        display: "flex",
+        justifyContent: "center",
+        padding: 20
     })
 
     useEffect(() => {
@@ -49,7 +59,7 @@ const CoinsTable = () => {
     return (
         <div>
             <Container style={{ textAlign: "center"}}>
-                <Typography variant="h4" style={{margin: "60 10 20",  fontFamily: "Montserrat"}}>
+                <Typography variant="h4" style={{marginTop: 50, marginBottom:30, fontFamily: "Montserrat"}}>
                     Cryptocurrency Prices by Market Cap
                 </Typography>
                 <StyledTextField 
@@ -74,7 +84,7 @@ const CoinsTable = () => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    { handleSearch().map(coin => {
+                                    {handleSearch().slice((page-1)*10, page*10).map(coin => {
                                         const plus = coin.price_change_percentage_24h >= 0;
 
                                         return (
@@ -114,6 +124,13 @@ const CoinsTable = () => {
                             </Table>
                     }
                 </TableContainer>
+                <StyledPagination
+                count={parseInt((handleSearch()?.length/10).toFixed(0))}
+                onChange={(_, val) => {
+                    setPage(val);
+                    window.scroll(0, 450);
+                }}
+                page={page}/>
             </Container>
         </div>
     )
