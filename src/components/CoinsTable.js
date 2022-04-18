@@ -7,6 +7,33 @@ import { useNavigate } from 'react-router-dom';
 import { CoinList } from '../config/api';
 import { CryptoState } from '../CryptoContext';
 
+const StyledTextField = styled(TextField, {})({
+    marginBottom: 20,
+    width: "100%",
+    '& label': {color: 'white'},
+    '& label.Mui-focused': {color: 'gold'},
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {borderColor: '#3c434a'},
+        '&:hover fieldset': {borderColor: 'white'},
+        '&.Mui-focused fieldset': {borderColor: 'gold'}
+    },
+    input: {color: "white", fontFamily: "Montserrat"}
+});
+
+const StyledTableRow = styled(TableRow, {})({
+    cursor: "pointer",
+    "&:hover": {backgroundColor: "#2E2E2E"},
+    fontFamily: "Montserrat"
+})
+
+// const StyledPagination = styled(Pagination, {})({
+//     ul: {"& .MuiPaginationItem-root": {color: "gold"},
+//         '& .Mui-selected': {backgroundColor: 'gold', color: 'black'}},
+//     display: "flex",
+//     justifyContent: "center",
+//     padding: 20
+// })
+
 const CoinsTable = () => {
     const navigate = useNavigate();
     const [coins, setCoins] = useState([]);
@@ -14,33 +41,6 @@ const CoinsTable = () => {
     const [page, setPage] = useState(1);
     const {currency, symbol} = CryptoState();
     // const [loading, setLoading] = useState(false);
-
-    const StyledTextField = styled(TextField, {})({
-        marginBottom: 20,
-        width: "100%",
-        '& label': {color: 'white'},
-        '& label.Mui-focused': {color: 'gold'},
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {borderColor: '#3c434a'},
-            '&:hover fieldset': {borderColor: 'white'},
-            '&.Mui-focused fieldset': {borderColor: 'gold'}
-        },
-        input: {color: "white", fontFamily: "Montserrat"}
-    });
-    
-    const StyledTableRow = styled(TableRow, {})({
-        cursor: "pointer",
-        "&:hover": {backgroundColor: "#2E2E2E"},
-        fontFamily: "Montserrat"
-    })
-
-    const StyledPagination = styled(Pagination, {})({
-        ul: {"& .MuiPaginationItem-root": {color: "gold"},
-            '& .Mui-selected': {backgroundColor: 'gold', color: 'black'}},
-        display: "flex",
-        justifyContent: "center",
-        padding: 20
-    })
 
     useEffect(() => {
         (async () => {
@@ -65,7 +65,7 @@ const CoinsTable = () => {
                 <StyledTextField 
                 label="Search For Your Crypto" 
                 variant="outlined"
-                onChange={(e) => {setSearch(e.target.value);}} />
+                onChange={(e) => {setSearch(e.target.value); console.log(e.target.value)}} />
                 <TableContainer>
                     {
                         // loading?
@@ -90,7 +90,8 @@ const CoinsTable = () => {
                                         return (
                                         <StyledTableRow
                                         onClick={() => navigate(`.coins/${coin.id}`)}
-                                        key={coin.name}>
+                                        key={coin.name}
+                                        >
                                             <TableCell component="th" scopt="row"
                                             style={{display: "flex", gap: 15}}>
                                                 <img
@@ -124,17 +125,16 @@ const CoinsTable = () => {
                             </Table>
                     }
                 </TableContainer>
-                <StyledPagination
+                {/* <StyledPagination
                 count={parseInt((handleSearch()?.length/10).toFixed(0))}
                 onChange={(_, val) => {
                     setPage(val);
                     window.scroll(0, 450);
                 }}
-                page={page}/>
+                page={page}/> */}
             </Container>
         </div>
     )
-
 }
 
 export default CoinsTable
