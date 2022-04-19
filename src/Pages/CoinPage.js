@@ -33,7 +33,12 @@ const CoinPage = () => {
       <StyledBox>
         <img src={coin?.image.large} alt={coin?.name} height="200" style={{marginBottom:20}}/>
         <Typography variant="h3" sx={{fontWeight:"bold", marginBottom: 5, fontFamily:"Montserrat"}}>{coin?.name}</Typography>
-        <Typography variant="subtitle1" sx={{fontFamily:"Montserrat", color:"grey", "& > a":{color:"yellow", textDecoration:"none"}}}>{ReactHtmlParser(coin?.description.en.split('. ')[0])}</Typography>
+        <Typography variant="subtitle1" sx={{
+          fontFamily:"Montserrat", 
+          color:"grey", 
+          "& > a":{color:"yellow", textDecoration:"none"}}}>
+          {ReactHtmlParser(coin?.description.en.split('. ')[0])}
+        </Typography>
       </StyledBox>
       <CoinInfo coin={coin} sx={{display:"flex", width:"60%"}}/>
     </Box>
