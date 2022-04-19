@@ -21,8 +21,7 @@ const Carousel = () => {
         (async () => {
             const {data} = await axios.get(TrendingCoins(currency));
             setTrending(data);
-        })();
-}, [currency]);
+        })()}, [currency]);
 
     const items = trending.map((coin) => {
         const percent = coin.price_change_percentage_24h;

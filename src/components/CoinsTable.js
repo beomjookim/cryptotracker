@@ -65,7 +65,7 @@ const CoinsTable = () => {
                 <StyledTextField 
                 label="Search For Your Crypto" 
                 variant="outlined"
-                onChange={(e) => {setSearch(e.target.value); console.log(e.target.value)}} />
+                onChange={(e) => {setSearch(e.target.value);}} />
                 <TableContainer>
                     {
                         loading?
@@ -89,7 +89,7 @@ const CoinsTable = () => {
 
                                     return (
                                     <StyledTableRow
-                                    onClick={() => navigate(`.coins/${coin.id}`)}
+                                    onClick={() => navigate(`coins/${coin.id}`)}
                                     key={coin.name}
                                     >
                                         <TableCell component="th" scopt="row"
