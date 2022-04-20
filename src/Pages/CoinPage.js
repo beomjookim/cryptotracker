@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom'
 import { SingleCoin } from '../config/api';
 import { CryptoState } from '../CryptoContext';
 import CoinInfo from '../components/CoinInfo'
-import { Box, LinearProgress, Typography } from '@mui/material';
-import { styled } from '@mui/system';
+import { Box, LinearProgress, TextareaAutosize, Typography } from '@mui/material';
+import { styled, textAlign } from '@mui/system';
 import ReactHtmlParser from 'react-html-parser';
 
 const StyledBox = styled(Box, {})({
@@ -14,6 +14,7 @@ const StyledBox = styled(Box, {})({
   width:"30%", 
   alignItems:"center", 
   borderRight:"2px solid grey", 
+  textAlign:"center",
   marginTop: 50, 
   padding: 20
 })
@@ -26,43 +27,45 @@ const CoinPage = () => {
     const {data} = await axios.get(SingleCoin(id));
     setCoin(data);
   }
-  useEffect(()=>{fetchCoin()}, []);
+  useEffect(()=>{fetchCoin()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     coin?
-    (<Box sx={{display:"flex"}}>
+    (<Box sx={{display:"flex"}}>  
       <StyledBox>
-        <img src={coin?.image.large} alt={coin?.name} height="200" style={{marginBottom:20}}/>
+        <img src={coin?.image.large} alt={coin?.name} 
+          height="200" style={{marginBottom:20}}/>    
         <Typography variant="h3" sx={{
           fontWeight:"bold", 
           marginBottom: 5, 
           fontFamily:"Montserrat"}}>
-            {coin?.name}
+          {coin?.name}
         </Typography>
         <Typography variant="subtitle1" sx={{
           fontFamily:"Montserrat", 
+          fontWeight: "500",
           color:"grey", 
-          padding: 2,
-          textAlign:"center",
+          margin: 5,
+          textAlign:"left",
           "& > a":{color:"yellow", textDecoration:"none"}}}>
           {ReactHtmlParser(coin?.description.en.split('. ')[0])}
         </Typography>
         <div>
-          <span sx={{display:"flex"}}>
-            <Typography variant='h5' sx={{marginTop: 5}}>
-              Rank:  {coin?.market_cap_rank}
-            </Typography>
-            <Typography variant='h5' sx={{marginTop: 2}}>
-              Current Price: {symbol} {coin?.market_data
-              .current_price[currency.toLowerCase()]
-              .toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            </Typography>
-            <Typography variant='h5' sx={{marginTop: 2}}>
-              Market Cap: {symbol} {coin?.market_data
-              .market_cap[currency.toLowerCase()]
-              .toFixed(2).toString().slice(0,-6).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}M
-            </Typography>
-          </span>
+          <Typography variant='h5' sx={{marginTop: 3, fontWeight:"bold"}}>
+            Rank: {coin?.market_cap_rank}
+          </Typography>
+          <Typography variant='h5' sx={{marginTop: 2, fontWeight:"bold"}}>
+            Current Price: {symbol} {coin?.market_data
+            .current_price[currency.toLowerCase()]
+            .toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </Typography>
+          <Typography variant='h5' sx={{marginTop: 2, fontWeight:"bold"}}>
+            Market Cap: {symbol} {coin?.market_data
+            .market_cap[currency.toLowerCase()]
+            .toFixed(2).toString().slice(0,-6).replace(/\B(?=(\d{3})+(?!\d))/g, ',')} M
+          </Typography>
         </div>
       </StyledBox>
       <CoinInfo coin={coin} sx={{display:"flex", width:"60%"}}/>
