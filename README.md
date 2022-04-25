@@ -29,6 +29,8 @@ React, JS, MUI(Materials UI), ChartJS
 
 ## Screenshots
 
+...
 
 ## [Link to the project]()
 
+...
