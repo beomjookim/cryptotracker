@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { HistoricalChart } from '../config/api';
 import { CryptoState } from '../CryptoContext';
 import axios from 'axios';
-import { Button, Container, RadioGroup } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import { styled } from '@mui/system';
 import { Line } from 'react-chartjs-2';
 import {Chart as ChartJS} from 'chart.js/auto';
