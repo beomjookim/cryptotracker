@@ -1,6 +1,6 @@
 {
-  "homepage": "http://beomjookim.github.io/crypto-tracker",
-  "name": "crypto-tracker",
+  "homepage": "http://beomjookim.github.io/cryptotracker",
+  "name": "cryptotracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
