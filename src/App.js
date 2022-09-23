@@ -14,7 +14,7 @@ const StyledPaper = styled(Paper, {})({
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <StyledPaper>
         <Header/>
         <Routes>
