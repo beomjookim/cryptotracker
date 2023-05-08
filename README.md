@@ -31,6 +31,6 @@ React, JS, MUI(Materials UI), ChartJS
 
 ...
 
-## [Link to the project]()
+## [Link to the project](https://beomjookim.github.io/cryptotracker/)
 
 ...
