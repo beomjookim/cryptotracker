@@ -27,10 +27,4 @@ React, JS, MUI(Materials UI), ChartJS
 3. pagination 기능을 통해 100개 이상의 아이템을 10개씩 10쪽으로 분할함.  
 
 
-## Screenshots
-
-...
-
 ## [Link to the project](https://beomjookim.github.io/cryptotracker/)
-
-...
